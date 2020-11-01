@@ -5,10 +5,12 @@ app.controller('myCtrl', function($scope, $http) {
 
     id: null,
     comments: null,
-    status: 'Esperando..'
+    status: 'Esperando..',
+    data: []
 
 
   }  
+  
 
 
   $scope.$GUI = {
@@ -18,7 +20,7 @@ app.controller('myCtrl', function($scope, $http) {
             url : "https://uniminuto-dev-ed.my.salesforce.com/services/data/v49.0/sobjects/CSAI__c/" + $scope.$var.id,
             headers: {
                 "Content-Type": "application/json",
-                "Authorization":"Bearer 00D4W000008Gr35!AQUAQCXKsmPsinsdRDrmGNajo2AOSUfX5Z1ixbvj8KV1KkttGhIkdR4olZepWUT48P4DFFHQo9F_vvpK58d4slrJAMrFpSDa"
+                "Authorization":"Bearer 00D4W000008Gr35!AQUAQH2CZajBcRH_V0Yg2zBai6giBNN53gM_bZ53k9f74LiU9ylb1KmkVXpkoChIOY3uflo1dRqLYtBSr30vh24TaFF8rEtH"
             },
             data: { 
                 Historial__c: $scope.$var.comments,
@@ -35,9 +37,9 @@ app.controller('myCtrl', function($scope, $http) {
             method : "GET",
             url : "https://csai.000webhostapp.com/db.php"
           }).then(response => {
-                $scope.$var.status = 'Cargado correctamente';
+                $scope.$var.data = response.data;
           },response => {
-                $scope.$var.status = 'Error al cargar';
+                $scope.$var.status = 'Error al cargar Json';
           });
       }
   }
